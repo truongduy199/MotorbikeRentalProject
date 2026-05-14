@@ -21,7 +21,7 @@ public class CustomerInfoFrame extends JFrame {
 
         setTitle("Bổ Sung Thông Tin Khách Hàng");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 650); // Tăng form nền to ra một chút
+        setSize(900, 650);
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(245, 247, 250));
         setLayout(new GridBagLayout());
@@ -87,9 +87,9 @@ public class CustomerInfoFrame extends JFrame {
         btnSubmit.addActionListener(e -> handleSubmit());
 
         mainPanel.add(lblTitle);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Cách tiêu đề xa ra
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         mainPanel.add(formPanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 40))); // Cách nút bấm xa ra
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
         mainPanel.add(btnSubmit);
 
         add(mainPanel, new GridBagConstraints());
@@ -100,7 +100,6 @@ public class CustomerInfoFrame extends JFrame {
         txt.setFont(new Font("Segoe UI", Font.PLAIN, 15));
         txt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, placeholder);
 
-        // 5. THÊM PADDING BÊN TRONG Ô TEXTFIELD VÀ BO GÓC NHẸ
         txt.putClientProperty(FlatClientProperties.STYLE, "margin: 5,10,5,10; arc: 8;");
         txt.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 
