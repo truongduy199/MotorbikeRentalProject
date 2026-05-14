@@ -322,10 +322,15 @@ public class CustomerManagementPanel extends JPanel {
             }
             // --------------------------------------------------
 
-            Date birthday = null;
+            java.sql.Date sqlBirthday = null; // Khai báo chuẩn xác kiểu SQL Date
             if (!dobStr.isEmpty()) {
                 try {
-                    birthday = sdf.parse(dobStr);
+                    // Bước 1: Dùng sdf parse ra java.util.Date như bình thường
+                    java.util.Date parsedDate = sdf.parse(dobStr);
+
+                    // Bước 2: Chuyển đổi util.Date sang sql.Date
+                    sqlBirthday = new java.sql.Date(parsedDate.getTime());
+
                 } catch (ParseException e) {
                     JOptionPane.showMessageDialog(this, "Ngày sinh không đúng định dạng (dd/MM/yyyy)!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -341,7 +346,7 @@ public class CustomerManagementPanel extends JPanel {
             kh.setAddress(address);
             kh.setDriverLicenseNumber(driverLicense);
             kh.setStatus(status);
-            kh.setBirthday(birthday);
+            kh.setBirthday(sqlBirthday);
 
             // Giả lập lưu
             JOptionPane.showMessageDialog(this, isEditMode ? "Giả lập sửa thành công!" : "Giả lập thêm thành công!");

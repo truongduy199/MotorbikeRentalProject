@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class KhachHangDAO {
 
     public List<KhachHangDTO> getAllCustomers() {
@@ -42,5 +43,26 @@ public class KhachHangDAO {
             return null;
         }
         return list;
+    }
+    public boolean themKhachHang(KhachHangDTO kh) {
+        String sql = "INSERT INTO CUSTOMERS (user_id, full_name, phone, email, cccd, birthday, address, driver_license_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = MySQLConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, kh.getUserId());
+            ps.setString(2, kh.getFullName());
+            ps.setString(3, kh.getPhone());
+            ps.setString(4, kh.getEmail());
+            ps.setString(5, kh.getCccd());
+            ps.setDate(6, kh.getBirthday());
+            ps.setString(7, kh.getAddress());
+            ps.setString(8, kh.getDriverLicenseNumber());
+
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

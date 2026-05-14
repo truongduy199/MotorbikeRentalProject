@@ -178,12 +178,14 @@ public class RegisterFrame extends JFrame {
         String message = taiKhoanBUS.dangKy(newAccount, rePassword, password);
 
         if (message.equals("Đăng ký thành công!")) {
-            JOptionPane.showMessageDialog(this, message + " Vui lòng đăng nhập.",
+            JOptionPane.showMessageDialog(this, message + " Vui lòng bổ sung thông tin cá nhân.",
                     "Thành công", JOptionPane.INFORMATION_MESSAGE);
+
+            int newUserId = taiKhoanBUS.layUserIdTheoUsername(username);
 
             // Chuyển hướng về trang Đăng nhập
             this.dispose();
-            new LoginFrame().setVisible(true);
+            new CustomerInfoFrame(newUserId).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, message, "Lỗi đăng ký", JOptionPane.ERROR_MESSAGE);
         }

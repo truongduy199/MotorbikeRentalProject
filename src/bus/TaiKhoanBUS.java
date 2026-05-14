@@ -30,4 +30,8 @@ public class TaiKhoanBUS {
         }
         return "Đăng ký thất bại, lỗi hệ thống!";
     }
+    public int layUserIdTheoUsername(String username) {
+        // Gọi xuống tầng DAO để lấy ID
+        return taiKhoanDAO.layUserIdTheoUsername(username);
+    }
 }

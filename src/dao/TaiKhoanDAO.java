@@ -56,4 +56,19 @@ public class TaiKhoanDAO {
         }
         return false;
     }
+
+    public int layUserIdTheoUsername(String username) {
+        String sql = "SELECT user_id FROM USERS WHERE username = ?";
+        try (Connection conn = MySQLConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, username);
+            var rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("user_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }
